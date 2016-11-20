@@ -1,0 +1,7 @@
+*.suo
+*.ncb
+Debug
+ddraw/Debug
+*.user
+/*.db
+*.filters

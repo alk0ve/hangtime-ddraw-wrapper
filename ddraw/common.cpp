@@ -3,6 +3,7 @@
 #include <mutex>
 #include <thread>
 
+
 std::mutex g_logMutex;
 
 
@@ -31,5 +32,5 @@ void Log(const std::string& message)
 
     std::ofstream log_file(LOG_FILE_PATH,
 						   std::ios_base::out | std::ios_base::app);
-    log_file << text << std::end;
+    log_file << message << std::endl;
 }
