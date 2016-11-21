@@ -1,6 +1,7 @@
 #include <ddraw.h>
 #include "common.h"
 
+
 typedef HRESULT (WINAPI * DirectDrawCreateFuncPtr)( GUID FAR *lpGUID, LPDIRECTDRAW FAR *lplpDD, IUnknown FAR *pUnkOuter );
 //char a = &DirectDrawCreate;
 
@@ -10,10 +11,15 @@ HRESULT WINAPI DirectDrawCreateHook(
   _In_  IUnknown FAR     *pUnkOuter
 )
 {
+	stringstream ss;
+	ss << "DirectDrawCreate(" << lpGUID << ", " << lplpDD << ", " << pUnkOuter << ")";
+	Log(ss.str());
+
+
 	HMODULE ddrawModuleHandle = GetOriginalDDrawModuleHandle();
 	if (NULL == ddrawModuleHandle)
 	{
-		OutputDebugString("DirectDrawCreate: failed to find ddraw.dll module handle");
+		Log("DirectDrawCreate: failed to find ddraw.dll module handle");
 		return DDERR_GENERIC;
 	}
 
@@ -22,9 +28,11 @@ HRESULT WINAPI DirectDrawCreateHook(
 
 	if (NULL == originalDirectDrawCreate)
 	{
-		OutputDebugString("DirectDrawCreate: failed to find DirectDrawCreate in ddraw.dll");
+		Log("DirectDrawCreate: failed to find DirectDrawCreate in ddraw.dll");
 		return DDERR_GENERIC;
 	}
 
-	return originalDirectDrawCreate(lpGUID, lplpDD, pUnkOuter);
+	HRESULT result = originalDirectDrawCreate(lpGUID, lplpDD, pUnkOuter);
+	LOG_HRESULT(result);
+	return result;
 }
