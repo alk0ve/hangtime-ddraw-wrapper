@@ -12,6 +12,13 @@ static const char * LOG_FILE_PATH = "log.txt";
 
 HMODULE GetOriginalDDrawModuleHandle(void);
 
+#define IMPL_STDMETHOD(method)        COM_DECLSPEC_NOTHROW HRESULT STDMETHODCALLTYPE method
+#define IMPL_STDMETHOD_(type,method)  COM_DECLSPEC_NOTHROW type STDMETHODCALLTYPE method
+
+// these would only work with a stream
+#define DEC(n) std::dec << n
+#define HEX(n) std::hex << "0x" << n
+
 #define LOG(s) Log(s)
 #define LOG_FORMAT(expr) \
 do { \
@@ -20,7 +27,7 @@ do { \
   Log(ss.str()); \
 } while (0)
 
-#define LOG_FUNC() Log(__func__)
+#define LOG_FUNC() LOG_FORMAT(__FILE__ << ":" << __func__ << "[this=" << HEX(this) << "]")
 
 #define LOG_HRESULT(result) LOG_FORMAT(__func__ << ": " << std::hex << result)
 

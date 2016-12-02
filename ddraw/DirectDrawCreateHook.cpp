@@ -1,6 +1,6 @@
 #include <ddraw.h>
 #include "common.h"
-
+#include "MyIDirectDraw.h"
 
 typedef HRESULT (WINAPI * DirectDrawCreateFuncPtr)( GUID FAR *lpGUID, LPDIRECTDRAW FAR *lplpDD, IUnknown FAR *pUnkOuter );
 //char a = &DirectDrawCreate;
@@ -32,7 +32,17 @@ HRESULT WINAPI DirectDrawCreateHook(
 		return DDERR_GENERIC;
 	}
 
-	HRESULT result = originalDirectDrawCreate(lpGUID, lplpDD, pUnkOuter);
+	LPDIRECTDRAW realDirectDrawPtr = NULL;
+
+	HRESULT result = originalDirectDrawCreate(lpGUID, &realDirectDrawPtr, pUnkOuter);
 	LOG_HRESULT(result);
+
+	if (DD_OK == result)
+	{
+		MyIDirectDraw * myIDirectDraw = new MyIDirectDraw(realDirectDrawPtr);
+		*lplpDD = myIDirectDraw;
+		LOG_FORMAT("Returning MyIDirectDraw at " << HEX(myIDirectDraw));
+	}
+
 	return result;
 }

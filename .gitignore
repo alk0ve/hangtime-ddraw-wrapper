@@ -5,3 +5,4 @@ ddraw/Debug
 *.user
 /*.db
 *.filters
+.vs/*
