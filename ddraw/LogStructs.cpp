@@ -49,6 +49,7 @@ void LogRect(LPRECT lpRectangle)
 	if (lpRectangle == NULL)
 	{
 		LOG_FORMAT("\t" << __FILE__ << ":" << __func__ << ": LPRECT is NULL");
+		return;
 	}
 
 	LOG_FORMAT("\t" << __FILE__ << ":" << __func__ << ": left = " << DEC(lpRectangle->left) << ", top = " << DEC(lpRectangle->top) << ", right = " << DEC(lpRectangle->right) << ", bottom = " << DEC(lpRectangle->bottom));
