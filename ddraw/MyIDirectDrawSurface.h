@@ -1,8 +1,6 @@
 #pragma once
 #include "ddraw.h"
 
-void LogSurfaceDescriptionStruct(LPDDSURFACEDESC surface);
-
 
 class MyIDirectDrawSurface :
 	public IDirectDrawSurface

@@ -91,6 +91,7 @@
     <ClCompile Include="common.cpp" />
     <ClCompile Include="DirectDrawCreateHook.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="LogStructs.cpp" />
     <ClCompile Include="MyIDirectDraw.cpp" />
     <ClCompile Include="MyIDirectDrawSurface.cpp" />
   </ItemGroup>
@@ -99,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common.h" />
+    <ClInclude Include="LogStructs.h" />
     <ClInclude Include="MyIDirectDraw.h" />
     <ClInclude Include="MyIDirectDrawSurface.h" />
   </ItemGroup>

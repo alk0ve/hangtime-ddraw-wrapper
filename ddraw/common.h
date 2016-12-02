@@ -27,7 +27,8 @@ do { \
   Log(ss.str()); \
 } while (0)
 
-#define LOG_FUNC() LOG_FORMAT(__FILE__ << ":" << __func__ << "[this=" << HEX(this) << "]")
+#define LOG_THIS_FUNC() LOG_FORMAT(__FILE__ << ":" << __func__ << "[this=" << HEX(this) << "]")
+#define LOG_STATIC_FUNC() LOG_FORMAT(__FILE__ << ":" << __func__)
 
 #define LOG_HRESULT(result) LOG_FORMAT(__func__ << ": " << std::hex << result)
 
