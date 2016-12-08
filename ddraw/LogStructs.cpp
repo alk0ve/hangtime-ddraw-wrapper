@@ -3,8 +3,6 @@
 
 void LogSurfaceDescriptionStruct(LPDDSURFACEDESC surface)
 {
-	LOG_STATIC_FUNC();
-
 	if (surface->dwSize != sizeof(DDSURFACEDESC))
 	{
 		LOG_FORMAT("\t" << __FILE__ << ":" << __func__ << ": unexpected struct size");

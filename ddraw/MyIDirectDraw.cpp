@@ -2,16 +2,10 @@
 #include "MyIDirectDrawSurface.h"
 #include "LogStructs.h"
 
-struct EmulatedDisplayMode {
-	DWORD dwWidth;
-	DWORD dwHeight;
-	DWORD dwBPP;
-};
-
 EmulatedDisplayMode g_emulatedDisplayMode = { 0 };
 
-HWND g_topLevelWindowHandle = NULL;
-DWORD g_emulatedCooperativeLevelFlags = 0;
+HWND MyIDirectDraw::g_topLevelWindowHandle = NULL;
+DWORD MyIDirectDraw::g_emulatedCooperativeLevelFlags = 0;
 
 
 MyIDirectDraw::MyIDirectDraw(LPDIRECTDRAW iDirectDraw)
@@ -62,25 +56,10 @@ IMPL_STDMETHOD(MyIDirectDraw::CreatePalette)(THIS_ DWORD a, LPPALETTEENTRY b, LP
 	return m_iDirectDraw->CreatePalette(a, b, c, d);
 }
 
-IMPL_STDMETHOD(MyIDirectDraw::CreateSurface)(THIS_ LPDDSURFACEDESC lpDDSurfaceDesc2, LPDIRECTDRAWSURFACE FAR * lplpDDSurface, IUnknown FAR * pUnkOuter)
+IMPL_STDMETHOD(MyIDirectDraw::CreateSurface)(THIS_ LPDDSURFACEDESC lpDDSurfaceDesc, LPDIRECTDRAWSURFACE FAR * lplpDDSurface, IUnknown FAR * pUnkOuter)
 {
-	LPDIRECTDRAWSURFACE directDrawSurfacePtr = NULL;
 	LOG_THIS_FUNC();
-	LogSurfaceDescriptionStruct(lpDDSurfaceDesc2);
-	LPDIRECTDRAWSURFACE actualDirectDrawSurface = NULL;
-	HRESULT result = m_iDirectDraw->CreateSurface(lpDDSurfaceDesc2, &actualDirectDrawSurface, pUnkOuter);
-
-	if (DD_OK != result)
-	{
-		LOG_FORMAT(__FILE__ << ":" << __func__ << ": call to CreateSurface failed with error " << HEX(result));
-		return result;
-	}
-
-	MyIDirectDrawSurface * myIDirectDrawSurface = new MyIDirectDrawSurface(actualDirectDrawSurface);
-	*lplpDDSurface = myIDirectDrawSurface;
-	LOG_FORMAT("\t" << __FILE__ << ":" << __func__ << ": returning MyIDirectDrawSurface at " << HEX(myIDirectDrawSurface));
-
-	return result;
+	return MyIDirectDrawSurface::Create(m_iDirectDraw, lpDDSurfaceDesc, lplpDDSurface, pUnkOuter);
 }
 
 IMPL_STDMETHOD(MyIDirectDraw::DuplicateSurface)(THIS_ LPDIRECTDRAWSURFACE a, LPDIRECTDRAWSURFACE FAR * b)
@@ -168,11 +147,13 @@ IMPL_STDMETHOD(MyIDirectDraw::RestoreDisplayMode)(THIS)
 IMPL_STDMETHOD(MyIDirectDraw::SetCooperativeLevel)(THIS_ HWND hWnd, DWORD dwFlags)
 {
 	// TODO: intercept
-	LOG_FORMAT(__FILE__ << ":" << __func__ << "(" << HEX(hWnd) << ", " << HEX(dwFlags) << ")");
+	LOG_THIS_FUNC();
+	LOG_FORMAT("\thWnd = " << HEX(hWnd) << ", dwFlags = " << HEX(dwFlags));
 	g_emulatedCooperativeLevelFlags = dwFlags;
 	g_topLevelWindowHandle = hWnd;
-	return m_iDirectDraw->SetCooperativeLevel(hWnd, dwFlags);
-	// return m_iDirectDraw->SetCooperativeLevel(hWnd, DDSCL_NORMAL);
+
+	// return m_iDirectDraw->SetCooperativeLevel(hWnd, dwFlags);
+	return m_iDirectDraw->SetCooperativeLevel(hWnd, DDSCL_NORMAL);
 }
 
 IMPL_STDMETHOD(MyIDirectDraw::SetDisplayMode)(THIS_ DWORD dwWidth, DWORD dwHeight, DWORD dwBPP)

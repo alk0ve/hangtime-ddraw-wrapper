@@ -2,10 +2,19 @@
 #include "ddraw.h"
 #include "common.h"
 
+struct EmulatedDisplayMode {
+	DWORD dwWidth;
+	DWORD dwHeight;
+	DWORD dwBPP;
+};
+
 class MyIDirectDraw :
 	public IDirectDraw
 {
 public:
+	static HWND g_topLevelWindowHandle;
+	static DWORD g_emulatedCooperativeLevelFlags;
+
 	MyIDirectDraw(LPDIRECTDRAW iDirectDraw);
 	virtual ~MyIDirectDraw();
 

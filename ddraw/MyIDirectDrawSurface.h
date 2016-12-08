@@ -6,7 +6,9 @@ class MyIDirectDrawSurface :
 	public IDirectDrawSurface
 {
 public:
-	MyIDirectDrawSurface(LPDIRECTDRAWSURFACE iDirectDrawSurface);
+	static HRESULT Create(LPDIRECTDRAW lpDirectDraw, LPDDSURFACEDESC lpDDSurfaceDesc2, LPDIRECTDRAWSURFACE FAR * lplpDDSurface, IUnknown FAR * pUnkOuter);
+
+	MyIDirectDrawSurface(LPDIRECTDRAWSURFACE frontSurfacePtr, LPDIRECTDRAWSURFACE backSurfacePtr, bool isSurfacePrimary);
 	virtual ~MyIDirectDrawSurface();
 	/*** IUnknown methods ***/
 	STDMETHOD(QueryInterface) (THIS_ REFIID riid, LPVOID FAR * ppvObj);
@@ -49,6 +51,8 @@ public:
 
 
 protected:
-	LPDIRECTDRAWSURFACE m_iDirectDrawSurface;
+	LPDIRECTDRAWSURFACE m_frontSurfacePtr;
+	LPDIRECTDRAWSURFACE m_backSurfacePtr;
+	bool m_isPrimary;
 };
 
