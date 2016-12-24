@@ -13,7 +13,7 @@ void LogSurfaceDescriptionStruct(LPDDSURFACEDESC surface)
 
 	if (surface->dwFlags & DDSD_BACKBUFFERCOUNT)
 	{
-		LOG_FORMAT("\t" << __FILE__ << ":" << __func__ << ": dwBackBufferCount  = " << HEX(surface->dwBackBufferCount));
+		LOG_FORMAT("\t" << __FILE__ << ":" << __func__ << ": dwBackBufferCount  = " << DEC(surface->dwBackBufferCount));
 	}
 
 	if (surface->dwFlags & DDSD_CAPS)
@@ -23,7 +23,7 @@ void LogSurfaceDescriptionStruct(LPDDSURFACEDESC surface)
 
 	if (surface->dwFlags & DDSD_HEIGHT)
 	{
-		LOG_FORMAT("\t" << __FILE__ << ":" << __func__ << ": dwHeight  = " << HEX(surface->dwHeight));
+		LOG_FORMAT("\t" << __FILE__ << ":" << __func__ << ": dwHeight  = " << DEC(surface->dwHeight));
 	}
 
 	if (surface->dwFlags & DDSD_LPSURFACE)
@@ -38,7 +38,7 @@ void LogSurfaceDescriptionStruct(LPDDSURFACEDESC surface)
 
 	if (surface->dwFlags & DDSD_WIDTH)
 	{
-		LOG_FORMAT("\t" << __FILE__ << ":" << __func__ << ": dwWidth = " << HEX(surface->dwWidth));
+		LOG_FORMAT("\t" << __FILE__ << ":" << __func__ << ": dwWidth = " << DEC(surface->dwWidth));
 	}
 }
 

@@ -6,13 +6,18 @@ class MyIDirectDrawSurface :
 	public IDirectDrawSurface
 {
 public:
-	static HRESULT Create(LPDIRECTDRAW lpDirectDraw, LPDDSURFACEDESC lpDDSurfaceDesc2, LPDIRECTDRAWSURFACE FAR * lplpDDSurface, IUnknown FAR * pUnkOuter);
+	static const unsigned int MAX_NUM_WRAPPED_SURFACES = 10;
+	static const unsigned int SURFACE_WIDTH = 640;  // ???
+	static const unsigned int SURFACE_HEIGHT = 480;  // ???
 
-	MyIDirectDrawSurface(LPDIRECTDRAWSURFACE frontSurfacePtr, LPDIRECTDRAWSURFACE backSurfacePtr, bool isSurfacePrimary);
+	static HRESULT Create(LPDIRECTDRAW lpDirectDraw, LPDDSURFACEDESC lpDDSurfaceDesc2, LPDIRECTDRAWSURFACE FAR * lplpDDSurface, IUnknown FAR * pUnkOuter);
+	static LPDIRECTDRAWSURFACE GetRawSurface(LPDIRECTDRAWSURFACE surfacePtr);
+
+	MyIDirectDrawSurface(LPDIRECTDRAWSURFACE surfacePtr, MyIDirectDrawSurface * nextSurfacePtr, bool hasBackingBuffers);
 	virtual ~MyIDirectDrawSurface();
 	/*** IUnknown methods ***/
 	STDMETHOD(QueryInterface) (THIS_ REFIID riid, LPVOID FAR * ppvObj);
-	STDMETHOD_(ULONG, AddRef) (THIS) ;
+	STDMETHOD_(ULONG, AddRef) (THIS);
 	STDMETHOD_(ULONG, Release) (THIS);
 	/*** IDirectDrawSurface methods ***/
 	STDMETHOD(AddAttachedSurface)(THIS_ LPDIRECTDRAWSURFACE);
@@ -51,8 +56,8 @@ public:
 
 
 protected:
-	LPDIRECTDRAWSURFACE m_frontSurfacePtr;
-	LPDIRECTDRAWSURFACE m_backSurfacePtr;
-	bool m_isPrimary;
+	LPDIRECTDRAWSURFACE m_rawSurfacePtr;
+	MyIDirectDrawSurface * m_nextSurfacePtr;
+	bool m_hasBackingBuffers;
 };
 
