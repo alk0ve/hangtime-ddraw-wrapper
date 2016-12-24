@@ -3,6 +3,7 @@
 
 void LogSurfaceDescriptionStruct(LPDDSURFACEDESC surface)
 {
+#ifndef DISABLE_LOG
 	if (surface->dwSize != sizeof(DDSURFACEDESC))
 	{
 		LOG_FORMAT("\t" << __FILE__ << ":" << __func__ << ": unexpected struct size");
@@ -40,10 +41,12 @@ void LogSurfaceDescriptionStruct(LPDDSURFACEDESC surface)
 	{
 		LOG_FORMAT("\t" << __FILE__ << ":" << __func__ << ": dwWidth = " << DEC(surface->dwWidth));
 	}
+#endif
 }
 
 void LogRect(LPRECT lpRectangle)
 {
+#ifndef DISABLE_LOG
 	if (lpRectangle == NULL)
 	{
 		LOG_FORMAT("\t" << __FILE__ << ":" << __func__ << ": LPRECT is NULL");
@@ -51,4 +54,5 @@ void LogRect(LPRECT lpRectangle)
 	}
 
 	LOG_FORMAT("\t" << __FILE__ << ":" << __func__ << ": left = " << DEC(lpRectangle->left) << ", top = " << DEC(lpRectangle->top) << ", right = " << DEC(lpRectangle->right) << ", bottom = " << DEC(lpRectangle->bottom));
+#endif
 }
