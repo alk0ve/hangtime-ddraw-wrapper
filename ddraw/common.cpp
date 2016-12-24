@@ -1,11 +1,4 @@
 #include "common.h"
-#include <fstream>
-#include <mutex>
-#include <thread>
-
-
-std::mutex g_logMutex;
-
 
 HMODULE GetOriginalDDrawModuleHandle(void)
 {
@@ -23,14 +16,4 @@ HMODULE GetOriginalDDrawModuleHandle(void)
 	}
 
 	return ddrawModule;
-}
-
-
-void Log(const std::string& message)
-{
-	std::lock_guard<std::mutex> lock(g_logMutex);
-
-    std::ofstream log_file(LOG_FILE_PATH,
-						   std::ios_base::out | std::ios_base::app);
-    log_file << message << std::endl;
 }

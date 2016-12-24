@@ -2,6 +2,8 @@
 *.ncb
 Debug
 ddraw/Debug
+Release
+ddraw/Release
 *.user
 /*.db
 *.filters
