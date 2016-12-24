@@ -41,6 +41,11 @@ void LogSurfaceDescriptionStruct(LPDDSURFACEDESC surface)
 	{
 		LOG_FORMAT("\t" << __FILE__ << ":" << __func__ << ": dwWidth = " << DEC(surface->dwWidth));
 	}
+	if (surface->dwFlags & DDSD_PITCH)
+	{
+		LOG_FORMAT("\t" << __FILE__ << ":" << __func__ << ": lPitch = " << DEC(surface->lPitch));
+	}
+
 #endif
 }
 
