@@ -1,9 +1,11 @@
 *.suo
 *.ncb
 Debug
-ddraw/Debug
 Release
+ddraw/Debug
 ddraw/Release
+user32/Debug
+user32/Release
 *.user
 /*.db
 *.filters

@@ -1,4 +1,3 @@
-#include <iostream>
 #include <windows.h>
 
 #pragma comment (linker, "/export:AcquireDDThreadLock=ddraw_original.AcquireDDThreadLock,@1")

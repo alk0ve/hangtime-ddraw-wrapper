@@ -168,6 +168,9 @@ IMPL_STDMETHOD(MyIDirectDrawSurface::Blt)(THIS_ LPRECT lpDestRect, LPDIRECTDRAWS
 	Log("\tlpSrcRect:");
 	LogRect(lpSrcRect);
 
+	Log("\tlpDDBltFx:");
+	LogDDBLTFX(lpDDBltFx, dwFlags);
+
 	LOG_FORMAT("\t" << __FILE__ << ":" << __func__ << ": dwFlags = " << HEX(dwFlags));
 
 	return m_rawSurfacePtr->Blt(lpDestRect, GetRawSurface(lpDDSrcSurface), lpSrcRect, dwFlags, lpDDBltFx);
@@ -206,11 +209,16 @@ IMPL_STDMETHOD(MyIDirectDrawSurface::Flip)(THIS_ LPDIRECTDRAWSURFACE lpDDSurface
 	GetClientRect(MyIDirectDraw::g_topLevelWindowHandle, &destinationRectangle);
 	OffsetRect(&destinationRectangle, p.x, p.y);
 	SetRect(&sourceRectangle, 0, 0, SURFACE_WIDTH, SURFACE_HEIGHT);
+
+	LOG_FORMAT("\tsourceRectangle:");
+	LogRect(&sourceRectangle);
+
+	LOG_FORMAT("\tdestinationRectangle:");
+	LogRect(&destinationRectangle);
+
 	result = m_rawSurfacePtr->Blt(&destinationRectangle, m_nextSurfacePtr->m_rawSurfacePtr, &sourceRectangle, DDBLT_WAIT, NULL);
 
 	return result;
-
-	// return m_frontSurfacePtr->Flip(lpDDSurfaceTargetOverride, dwFlags);
 }
 
 IMPL_STDMETHOD(MyIDirectDrawSurface::GetAttachedSurface)(THIS_ LPDDSCAPS lpDDSCaps, LPDIRECTDRAWSURFACE FAR * lplpDDAttachedSurface)
@@ -220,7 +228,7 @@ IMPL_STDMETHOD(MyIDirectDrawSurface::GetAttachedSurface)(THIS_ LPDDSCAPS lpDDSCa
 
 	if ((lpDDSCaps->dwCaps & DDSCAPS_BACKBUFFER) && m_hasBackingBuffers)
 	{
-		LOG_FORMAT("\tReturning emulated back-buffer");
+		LOG_FORMAT("\tReturning emulated back-buffer at " << HEX(m_nextSurfacePtr));
 		m_nextSurfacePtr->AddRef(); // as per MSDN entry for GetAttachedSurface
 		*lplpDDAttachedSurface = m_nextSurfacePtr;
 		return DD_OK;

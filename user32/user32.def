@@ -1,0 +1,24 @@
+LIBRARY user32.dll
+EXPORTS
+SystemParametersInfoA=SystemParametersInfoAHook
+GetClientRect=GetClientRectHook
+ClientToScreen=ClientToScreenHook
+SetWindowLongW=SetWindowLongWHook
+SetRect=SetRectHook
+SetCursor=SetCursorHook
+EnableWindow=EnableWindowHook
+GetWindowRect=GetWindowRectHook
+GetClipCursor=GetClipCursorHook
+GetAsyncKeyState=GetAsyncKeyStateHook
+LoadCursorA=LoadCursorAHook
+RegisterClassA=RegisterClassAHook
+CreateWindowExA=CreateWindowExAHook
+ShowWindow=ShowWindowHook
+UpdateWindow=UpdateWindowHook
+GetUpdateRect=GetUpdateRectHook
+BeginPaint=BeginPaintHook
+EndPaint=EndPaintHook
+DestroyWindow=DestroyWindowHook
+SetWindowPos=SetWindowPosHook
+AdjustWindowRectEx=AdjustWindowRectExHook
+GetWindowLongA=GetWindowLongAHook

@@ -159,7 +159,7 @@ IMPL_STDMETHOD(MyIDirectDraw::SetCooperativeLevel)(THIS_ HWND hWnd, DWORD dwFlag
 IMPL_STDMETHOD(MyIDirectDraw::SetDisplayMode)(THIS_ DWORD dwWidth, DWORD dwHeight, DWORD dwBPP)
 {
 	LOG_THIS_FUNC();
-	//return m_iDirectDraw->SetDisplayMode(dwWidth, dwHeight, dwBPP);
+	LOG_FORMAT("\tdwWidth = " << DEC(dwWidth) << ", dwHeight = " << DEC(dwHeight) << ", dwBPP = " << DEC(dwBPP));
 	g_emulatedDisplayMode.dwWidth = dwWidth;
 	g_emulatedDisplayMode.dwHeight = dwHeight;
 	g_emulatedDisplayMode.dwBPP = dwBPP;

@@ -7,11 +7,23 @@ if exist %systemroot%\SysWOW64 (
 	) else (
 		goto error
 	)
+	
+	if exist %systemroot%\SysWOW64\user32.dll (
+		copy %systemroot%\SysWOW64\user32.dll .\user32_original.dll
+	) else (
+		goto error
+	)
 
 ) else (
 	rem 32 bit system
 	if exist %systemroot%\System32\ddraw.dll (
 		copy %systemroot%\System32\ddraw.dll .\ddraw_original.dll
+	) else (
+		goto error
+	)
+	
+	if exist %systemroot%\System32\user32.dll (
+		copy %systemroot%\System32\user32.dll .\user32_original.dll
 	) else (
 		goto error
 	)
