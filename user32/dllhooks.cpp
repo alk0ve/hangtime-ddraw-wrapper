@@ -10,7 +10,8 @@ std::mutex g_moduleHandleMutex;
 
 // REQUIRES: funcPtrType defined
 // DEFINES: user32, static funcPtr
-#define INTERCEPTION_PROLOGUE(func_name) HMODULE user32 = getUser32ModuleHandle(); \
+#define INTERCEPTION_PROLOGUE(func_name) LOG_STATIC_FUNC(); \
+HMODULE user32 = getUser32ModuleHandle(); \
 static funcPtrType funcPtr = NULL; \
 if (NULL == funcPtr) \
 { \
@@ -100,6 +101,7 @@ HCURSOR WINAPI SetCursorHook(
 	_In_opt_ HCURSOR hCursor
 )
 {
+	Log("HI");
 	typedef HCURSOR(WINAPI *funcPtrType)(
 		_In_opt_ HCURSOR hCursor
 		);

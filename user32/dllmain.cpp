@@ -951,6 +951,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
                        LPVOID lpReserved
 					 )
 {
+	// OutputDebugString("USSR!");
 	return TRUE;
 }
 

@@ -1,4 +1,4 @@
-LIBRARY user32.dll
+LIBRARY ussr32.dll
 EXPORTS
 SystemParametersInfoA=SystemParametersInfoAHook
 GetClientRect=GetClientRectHook
