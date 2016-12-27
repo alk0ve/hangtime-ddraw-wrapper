@@ -1,6 +1,6 @@
 #include "MyIDirectDraw.h"
 #include "MyIDirectDrawSurface.h"
-#include "LogStructs.h"
+#include "common/LogStructs.h"
 
 EmulatedDisplayMode g_emulatedDisplayMode = { 0 };
 

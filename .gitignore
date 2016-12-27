@@ -6,6 +6,8 @@ ddraw/Debug
 ddraw/Release
 user32/Debug
 user32/Release
+common/Debug
+common/Release
 *.user
 /*.db
 *.filters

@@ -1,6 +1,6 @@
 #include "MyIDirectDrawSurface.h"
-#include "common.h"
-#include "LogStructs.h"
+#include "common/common.h"
+#include "common/LogStructs.h"
 #include "MyIDirectDraw.h"
 
 

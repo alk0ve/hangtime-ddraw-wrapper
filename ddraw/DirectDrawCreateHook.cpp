@@ -1,9 +1,9 @@
 #include <ddraw.h>
-#include "common.h"
+#include "common/common.h"
 #include "MyIDirectDraw.h"
 
 typedef HRESULT (WINAPI * DirectDrawCreateFuncPtr)( GUID FAR *lpGUID, LPDIRECTDRAW FAR *lplpDD, IUnknown FAR *pUnkOuter );
-//char a = &DirectDrawCreate;
+const char * DDRAW_ORIGINAL_NAME = "ddraw_original.dll";
 
 HRESULT WINAPI DirectDrawCreateHook(
   _In_  GUID FAR         *lpGUID,
@@ -16,7 +16,7 @@ HRESULT WINAPI DirectDrawCreateHook(
 	Log(ss.str());
 
 
-	HMODULE ddrawModuleHandle = GetOriginalDDrawModuleHandle();
+	HMODULE ddrawModuleHandle = GetOriginalDDrawModuleHandle(DDRAW_ORIGINAL_NAME);
 	if (NULL == ddrawModuleHandle)
 	{
 		Log("DirectDrawCreate: failed to find ddraw.dll module handle");

@@ -1,6 +1,6 @@
 #pragma once
 #include "ddraw.h"
-#include "common.h"
+#include "common/common.h"
 
 struct EmulatedDisplayMode {
 	DWORD dwWidth;

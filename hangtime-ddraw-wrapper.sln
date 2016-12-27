@@ -4,8 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ddraw", "ddraw\ddraw.vcxproj", "{5B8FB83B-BFDA-446B-A256-BE92D9DDC90D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C6C12182-A53E-469C-B37F-8A848CBA41D8} = {C6C12182-A53E-469C-B37F-8A848CBA41D8}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "user32", "user32\user32.vcxproj", "{9907D99B-AA6D-4717-BCE3-78BC0BEFA142}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C6C12182-A53E-469C-B37F-8A848CBA41D8} = {C6C12182-A53E-469C-B37F-8A848CBA41D8}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "common", "common\common.vcxproj", "{C6C12182-A53E-469C-B37F-8A848CBA41D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +37,14 @@ Global
 		{9907D99B-AA6D-4717-BCE3-78BC0BEFA142}.Release|Win32.Build.0 = Release|Win32
 		{9907D99B-AA6D-4717-BCE3-78BC0BEFA142}.Release|x64.ActiveCfg = Release|x64
 		{9907D99B-AA6D-4717-BCE3-78BC0BEFA142}.Release|x64.Build.0 = Release|x64
+		{C6C12182-A53E-469C-B37F-8A848CBA41D8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C6C12182-A53E-469C-B37F-8A848CBA41D8}.Debug|Win32.Build.0 = Debug|Win32
+		{C6C12182-A53E-469C-B37F-8A848CBA41D8}.Debug|x64.ActiveCfg = Debug|x64
+		{C6C12182-A53E-469C-B37F-8A848CBA41D8}.Debug|x64.Build.0 = Debug|x64
+		{C6C12182-A53E-469C-B37F-8A848CBA41D8}.Release|Win32.ActiveCfg = Release|Win32
+		{C6C12182-A53E-469C-B37F-8A848CBA41D8}.Release|Win32.Build.0 = Release|Win32
+		{C6C12182-A53E-469C-B37F-8A848CBA41D8}.Release|x64.ActiveCfg = Release|x64
+		{C6C12182-A53E-469C-B37F-8A848CBA41D8}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
