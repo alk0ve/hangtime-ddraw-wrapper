@@ -1,6 +1,6 @@
 #include "common.h"
 
-HMODULE GetOriginalDDrawModuleHandle(const char * moduleName)
+HMODULE GetOriginalModuleHandle(const char * moduleName)
 {
 	HMODULE ddrawModule = GetModuleHandle(moduleName);
 	if (NULL == ddrawModule)

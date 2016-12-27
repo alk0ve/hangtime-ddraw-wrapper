@@ -16,7 +16,7 @@ HRESULT WINAPI DirectDrawCreateHook(
 	Log(ss.str());
 
 
-	HMODULE ddrawModuleHandle = GetOriginalDDrawModuleHandle(DDRAW_ORIGINAL_NAME);
+	HMODULE ddrawModuleHandle = GetOriginalModuleHandle(DDRAW_ORIGINAL_NAME);
 	if (NULL == ddrawModuleHandle)
 	{
 		Log("DirectDrawCreate: failed to find ddraw.dll module handle");

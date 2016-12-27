@@ -6,7 +6,7 @@ using std::stringstream;
 
 static const char * LOG_FILE_PATH = "log.txt";
 
-// these would only work with a stream
+// these would only work within a stream
 #define DEC(n) std::dec << (n)
 #define HEX(n) std::hex << "0x" << (n)
 
