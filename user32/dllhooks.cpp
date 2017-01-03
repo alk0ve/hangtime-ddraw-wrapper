@@ -5,7 +5,7 @@
 
 
 HMODULE g_user32ModuleHandle = NULL;
-const char * USER32_ORIGINAL_NAME = "user32_original.dll";
+const char * USER32_ORIGINAL_NAME = "user32.dll";
 std::mutex g_moduleHandleMutex;
 
 // REQUIRES: funcPtrType defined
@@ -101,7 +101,6 @@ HCURSOR WINAPI SetCursorHook(
 	_In_opt_ HCURSOR hCursor
 )
 {
-	Log("HI");
 	typedef HCURSOR(WINAPI *funcPtrType)(
 		_In_opt_ HCURSOR hCursor
 		);

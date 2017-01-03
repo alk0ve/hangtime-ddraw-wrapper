@@ -9,7 +9,7 @@ if exist %systemroot%\SysWOW64 (
 	)
 	
 	if exist %systemroot%\SysWOW64\user32.dll (
-		copy %systemroot%\SysWOW64\user32.dll .\user32_original.dll
+		copy %systemroot%\SysWOW64\user32.dll .\user32.dll
 	) else (
 		goto error
 	)
@@ -23,7 +23,7 @@ if exist %systemroot%\SysWOW64 (
 	)
 	
 	if exist %systemroot%\System32\user32.dll (
-		copy %systemroot%\System32\user32.dll .\user32_original.dll
+		copy %systemroot%\System32\user32.dll .\user32.dll
 	) else (
 		goto error
 	)
